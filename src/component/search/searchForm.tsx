@@ -16,7 +16,12 @@ export default function SearchForm() {
       body: JSON.stringify({ name }),
     });
     const data = await res.json();
-    setResult(data.userEmail[0].email);
+    if (data.userEmail.length > 0) {
+      setResult(data.userEmail[0].email);
+    } else {
+      setResult('Invalid user name');
+      setName('');
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
