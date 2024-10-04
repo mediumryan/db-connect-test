@@ -1,7 +1,7 @@
 'use client';
 
 import { loginAction } from '@/actions/loginAction';
-import { loginUserAtom } from '@/data/user';
+import { userNameAtom } from '@/data/user';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [user, setUser] = useAtom(loginUserAtom);
+  const [userName, setUserName] = useAtom(userNameAtom);
 
   useEffect(() => {
     const login = async (name: string) => {
@@ -28,8 +28,10 @@ export default function LoginPage() {
     };
     if (state?.ok && state?.data) {
       login(state?.data.name);
-      setUser(state?.data);
+      setUserName(state?.data.name);
+      alert('logged in');
       route.push('/');
+      route.refresh();
     } else if (!state?.ok && state?.message) {
       alert(state?.message);
     }

@@ -1,21 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
-interface HeaderLogoProps {
-  userName: string | undefined;
-}
-
-export default function HeaderLogo({ userName }: HeaderLogoProps) {
-  const [name, setName] = useState('');
-
+export default function HeaderLogo({ userName }: { userName: string }) {
+  const router = useRouter();
   useEffect(() => {
-    if (userName) {
-      setName(userName);
-    } else {
-      setName('');
-    }
-  }, [userName]);
+    router.refresh();
+  }, []);
 
-  return <div className="">{name && `Hello,${name}`}</div>;
+  return <div className="">{userName && `Hello,${userName}`}</div>;
 }

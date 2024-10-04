@@ -1,8 +1,6 @@
 'use client';
 
 import { signUpAction } from '@/actions/signUpAction';
-import { loginUserAtom } from '@/data/user';
-import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
@@ -15,7 +13,6 @@ export default function SignUp() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const [pwCheck, setPwCheck] = useState('');
-  const [user, setUser] = useAtom(loginUserAtom);
 
   useEffect(() => {
     const login = async (name: string) => {
@@ -30,9 +27,8 @@ export default function SignUp() {
     if (state?.ok && state?.data) {
       alert('Sign-up complete. You will be logged in automatically.');
       login(state?.data.name);
-      setUser(state?.data);
-      route.refresh();
       route.push('/');
+      route.refresh();
     } else if (!state?.ok && state?.message) {
       alert(state?.message);
     }

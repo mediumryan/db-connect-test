@@ -9,9 +9,4 @@ export interface UserType {
 
 export const userAtom = atom<UserType[]>([]);
 
-export const loginUserAtom = atom<UserType>({
-  id: 0,
-  name: '',
-  email: '',
-  password: '',
-});
+export const userNameAtom = atom('');
