@@ -29,7 +29,6 @@ export default function LoginPage() {
     if (state?.ok && state?.data) {
       login(state?.data.name);
       setUser(state?.data);
-      route.refresh();
       route.push('/');
     } else if (!state?.ok && state?.message) {
       alert(state?.message);

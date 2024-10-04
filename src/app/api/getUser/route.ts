@@ -13,6 +13,7 @@ export async function GET() {
 
     return NextResponse.json({ userList });
   } catch {
+    console.log('Fail to Connecting DB');
     return NextResponse.json({});
   }
 }

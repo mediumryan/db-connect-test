@@ -1,20 +1,10 @@
 'use client';
 
-import { useEffect } from 'react';
-import { userAtom } from '@/data/user';
-import { useAtom } from 'jotai';
+import { UserType } from '@/data/user';
+import { useRouter } from 'next/navigation';
 
-export default function UserList() {
-  const [user, setUser] = useAtom(userAtom);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const res = await fetch('/api/getUser');
-      const userData = await res.json();
-      setUser(userData.userList);
-    };
-    getUser();
-  }, []);
+export default function UserList({ user }: { user: UserType[] }) {
+  const route = useRouter();
 
   return (
     <div>
