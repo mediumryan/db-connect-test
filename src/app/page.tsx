@@ -4,7 +4,7 @@ import UserList from '@/component/userList';
 import { UserType } from '@/data/user';
 import { dbConnect } from '@/lib/dbConnect';
 
-export async function getUser() {
+async function getUser() {
   const connection = await dbConnect();
   const [rows] = await connection.execute('SELECT * FROM user');
   connection.end();
